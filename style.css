@@ -1,0 +1,58 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f1f3f5;
+}
+.sidebar {
+  height: 100vh;
+  background-color: #343a40;
+  color: #fff;
+  padding: 1rem;
+}
+.sidebar a {
+  color: #adb5bd;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+.sidebar a:hover {
+  color: #fff;
+}
+.card {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+.message-header {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #343a40;
+}
+.btn-outline-primary {
+  border-radius: 50px;
+}
+.btn-outline-primary:hover {
+  background: #0d6efd;
+  color: #fff;
+}
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.task-item i {
+  color: #0d6efd;
+}
+.notification-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+.notification-item a {
+  text-decoration: none;
+  color: #0d6efd;
+}
