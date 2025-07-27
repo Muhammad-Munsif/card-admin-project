@@ -1,6 +1,6 @@
 function respondRemote() {
   document.getElementById("responseMessage").innerText =
-    "Thank you for the update. I truly appreciate the opportunity. However, I am currently seeking a remote position, so I won’t be able to attend an on-site role in Okara. Please do keep me in mind for any remote opportunities in the future.";
+    "Thank you for the update. I truly appreciate the opportunity. However, I am currently seeking a remote position, so I would not be able to attend an on-site role in Okara. Please do keep me in mind for any remote opportunities in the future.";
 }
 
 function respondIgnore() {
