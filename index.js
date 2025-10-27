@@ -25,26 +25,35 @@ themeToggle.addEventListener("click", () => {
 
 function updateThemeIcon(theme) {
   if (theme === "dark") {
-    themeIcon.className = "bi bi-sun-fill";
+    themeIcon.className = "bi bi-sun";
   } else {
-    themeIcon.className = "bi bi-moon-fill";
+    themeIcon.className = "bi bi-moon";
   }
 }
 
-// Sidebar toggle functionality for mobile
-const sidebarToggle = document.getElementById("sidebarToggle");
+// Hamburger menu functionality
+const hamburgerMenu = document.getElementById("hamburgerMenu");
 const sidebar = document.getElementById("sidebar");
-const mainContent = document.getElementById("mainContent");
+const sidebarOverlay = document.getElementById("sidebarOverlay");
 
-sidebarToggle.addEventListener("click", () => {
-  sidebar.classList.toggle("collapsed");
+hamburgerMenu.addEventListener("click", () => {
+  sidebar.classList.toggle("active");
+  hamburgerMenu.classList.toggle("active");
+  sidebarOverlay.classList.toggle("active");
+});
+
+sidebarOverlay.addEventListener("click", () => {
+  sidebar.classList.remove("active");
+  hamburgerMenu.classList.remove("active");
+  sidebarOverlay.classList.remove("active");
 });
 
 // Job response functions
 function respondRemote() {
   const responseMessage = document.getElementById("responseMessage");
   responseMessage.innerHTML =
-    '<i class="bi bi-check-circle-fill me-2"></i>Thank you for the update. I truly appreciate the opportunity. However, I am currently seeking a remote position so I would not be able to attend an on-site role in Okara. Please do keep me in mind for any remote opportunities in the future.';
+    '<i class="bi bi-check-circle-fill me-2 text-success"></i>Thank you for the update. I truly appreciate the opportunity. However, I am currently seeking a remote position so I would not be able to attend an on-site role in Okara. Please do keep me in mind for any remote opportunities in the future.';
+  responseMessage.style.display = "block";
   responseMessage.classList.add("bounce");
   setTimeout(() => {
     responseMessage.classList.remove("bounce");
@@ -54,7 +63,8 @@ function respondRemote() {
 function respondIgnore() {
   const responseMessage = document.getElementById("responseMessage");
   responseMessage.innerHTML =
-    '<i class="bi bi-info-circle-fill me-2"></i>You chose to ignore this message.';
+    '<i class="bi bi-info-circle-fill me-2 text-warning"></i>You chose to ignore this message.';
+  responseMessage.style.display = "block";
   responseMessage.classList.remove("text-success");
   responseMessage.classList.add("text-warning");
   responseMessage.classList.add("bounce");
@@ -69,29 +79,42 @@ document.addEventListener("DOMContentLoaded", function () {
   const jobChart = new Chart(ctx, {
     type: "bar",
     data: {
-      labels: ["Applied", "Interviewed", "Shortlisted", "Rejected", "Offers"],
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
       datasets: [
         {
           label: "Applications",
-          data: [12, 4, 3, 5, 2],
-          backgroundColor: [
-            "#0d6efd",
-            "#20c997",
-            "#ffc107",
-            "#dc3545",
-            "#6f42c1",
-          ],
-          borderRadius: 5,
+          data: [8, 12, 6, 14, 10, 16],
+          backgroundColor: "#3b82f6",
+          borderRadius: 8,
+          borderSkipped: false,
+        },
+        {
+          label: "Interviews",
+          data: [2, 4, 3, 5, 4, 7],
+          backgroundColor: "#10b981",
+          borderRadius: 8,
+          borderSkipped: false,
+        },
+        {
+          label: "Offers",
+          data: [0, 1, 1, 2, 1, 3],
+          backgroundColor: "#f59e0b",
+          borderRadius: 8,
+          borderSkipped: false,
         },
       ],
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       scales: {
         y: {
           beginAtZero: true,
           grid: {
-            color: "rgba(0, 0, 0, 0.1)",
+            color: "rgba(0, 0, 0, 0.05)",
+          },
+          ticks: {
+            stepSize: 5,
           },
         },
         x: {
@@ -102,7 +125,11 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       plugins: {
         legend: {
-          display: false,
+          position: "top",
+          labels: {
+            usePointStyle: true,
+            padding: 15,
+          },
         },
       },
       animation: {
@@ -130,3 +157,17 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".card").forEach((card) => {
   observer.observe(card);
 });
+
+// Close sidebar when clicking on a link (mobile)
+document.querySelectorAll(".sidebar a").forEach((link) => {
+  link.addEventListener("click", () => {
+    if (window.innerWidth < 992) {
+      sidebar.classList.remove("active");
+      hamburgerMenu.classList.remove("active");
+      sidebarOverlay.classList.remove("active");
+    }
+  });
+});
+
+// Add gradient to user avatar
+document.querySelector(".user-avatar").style.background = "var(--bg-gradient)";
