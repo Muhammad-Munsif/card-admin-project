@@ -32,8 +32,7 @@
   padding: 0;
   box-sizing: border-box;
   transition: background-color var(--transition-speed),
-    color var(--transition-speed), border-color var(--transition-speed),
-    transform 0.3s ease, box-shadow 0.3s ease;
+    color var(--transition-speed), border-color var(--transition-speed);
 }
 
 body {
@@ -474,7 +473,7 @@ body {
   font-weight: 500;
 }
 
-/* Dark Mode Text Fixes */
+/* Dark Mode Fixes */
 [data-theme="dark"] .text-muted {
   color: #94a3b8 !important;
 }
@@ -482,6 +481,7 @@ body {
 [data-theme="dark"] .bg-light {
   background-color: #334155 !important;
   border-color: #475569 !important;
+  color: #cbd5e1 !important;
 }
 
 [data-theme="dark"] .text-warning {
