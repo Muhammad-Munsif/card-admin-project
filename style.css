@@ -524,7 +524,7 @@ body {
   color: #94a3b8;
 }
 
-/* Responsive styles */
+/* DESKTOP FIXES */
 @media (min-width: 992px) {
   .sidebar {
     transform: translateX(0);
@@ -543,10 +543,44 @@ body {
   .main-content {
     margin-left: 280px;
     padding-top: 20px;
+    width: calc(100% - 280px);
+  }
+
+  /* Fix desktop grid layout */
+  .row {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+  .col-xl-3,
+  .col-xl-4,
+  .col-xl-8,
+  .col-lg-5,
+  .col-lg-6,
+  .col-lg-7 {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  /* Ensure proper card heights on desktop */
+  .card.h-100 {
+    height: calc(100% - 30px) !important;
+  }
+
+  /* Fix navbar layout on desktop */
+  .navbar .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Fix chart container on desktop */
+  .chart-container {
+    height: 300px !important;
   }
 }
 
-@media (max-width: 991px) {
+/* Tablet styles */
+@media (max-width: 991px) and (min-width: 768px) {
   .main-content {
     margin-left: 0;
     padding-top: 80px;
@@ -555,10 +589,16 @@ body {
   .stat-card {
     margin-bottom: 1rem;
   }
+
+  /* Fix tablet grid layout */
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
 }
 
 /* Mobile-specific adjustments */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .main-content {
     padding: 1rem;
     padding-top: 80px;
