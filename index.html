@@ -1285,9 +1285,7 @@
               </div>
               <div class="card-body">
                 <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
-                  <div
-                    class="bg-primary bg-opacity-10 rounded-circle p-2 me-3"
-                  >
+                  <div class="bg-primary bg-opacity-10 rounded-circle p-2 me-3">
                     <i class="bi bi-briefcase text-primary"></i>
                   </div>
                   <div>
@@ -1298,9 +1296,7 @@
                   </div>
                 </div>
                 <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
-                  <div
-                    class="bg-success bg-opacity-10 rounded-circle p-2 me-3"
-                  >
+                  <div class="bg-success bg-opacity-10 rounded-circle p-2 me-3">
                     <i class="bi bi-envelope-open text-success"></i>
                   </div>
                   <div>
@@ -1311,9 +1307,7 @@
                   </div>
                 </div>
                 <div class="d-flex align-items-center">
-                  <div
-                    class="bg-warning bg-opacity-10 rounded-circle p-2 me-3"
-                  >
+                  <div class="bg-warning bg-opacity-10 rounded-circle p-2 me-3">
                     <i class="bi bi-calendar-check text-warning"></i>
                   </div>
                   <div>
@@ -1440,9 +1434,7 @@
                     <td>React Developer</td>
                     <td>Oct 5, 2023</td>
                     <td>
-                      <span class="status-badge status-rejected"
-                        >Rejected</span
-                      >
+                      <span class="status-badge status-rejected">Rejected</span>
                     </td>
                     <td>
                       <div class="d-flex gap-2">
@@ -1858,9 +1850,7 @@
                   </button>
                 </div>
                 <div class="d-flex align-items-center mb-3">
-                  <div
-                    class="bg-primary bg-opacity-10 rounded-circle p-3 me-3"
-                  >
+                  <div class="bg-primary bg-opacity-10 rounded-circle p-3 me-3">
                     <i class="bi bi-file-earmark-text text-primary fs-4"></i>
                   </div>
                   <div>
@@ -1898,9 +1888,7 @@
                   </button>
                 </div>
                 <div class="d-flex align-items-center mb-3">
-                  <div
-                    class="bg-success bg-opacity-10 rounded-circle p-3 me-3"
-                  >
+                  <div class="bg-success bg-opacity-10 rounded-circle p-3 me-3">
                     <i class="bi bi-file-earmark-text text-success fs-4"></i>
                   </div>
                   <div>
@@ -1938,9 +1926,7 @@
                   </button>
                 </div>
                 <div class="d-flex align-items-center mb-3">
-                  <div
-                    class="bg-warning bg-opacity-10 rounded-circle p-3 me-3"
-                  >
+                  <div class="bg-warning bg-opacity-10 rounded-circle p-3 me-3">
                     <i class="bi bi-file-earmark-text text-warning fs-4"></i>
                   </div>
                   <div>
@@ -2071,11 +2057,9 @@
                   </div>
                   <div class="form-group">
                     <label for="bio">Professional Bio</label>
-                    <textarea
-                      class="form-control"
-                      id="bio"
-                      rows="4"
-                    >Experienced software developer with 5+ years in frontend development. Passionate about creating user-friendly applications with modern technologies.</textarea>
+                    <textarea class="form-control" id="bio" rows="4">
+Experienced software developer with 5+ years in frontend development. Passionate about creating user-friendly applications with modern technologies.</textarea
+                    >
                   </div>
                   <button type="submit" class="btn-gradient">
                     Save Changes
@@ -2248,24 +2232,24 @@
       navItems.forEach((item) => {
         item.addEventListener("click", (e) => {
           e.preventDefault();
-          
+
           // Remove active class from all nav items
           navItems.forEach((navItem) => {
             navItem.classList.remove("active");
           });
-          
+
           // Add active class to clicked nav item
           item.classList.add("active");
-          
+
           // Hide all page contents
           pageContents.forEach((page) => {
             page.classList.remove("active");
           });
-          
+
           // Show the selected page content
           const pageId = item.getAttribute("data-page");
           document.getElementById(pageId).classList.add("active");
-          
+
           // Close sidebar on mobile after navigation
           if (window.innerWidth < 992) {
             sidebar.classList.remove("active");
@@ -2351,11 +2335,20 @@
         });
 
         // Analytics chart
-        const analyticsCtx = document.getElementById("analyticsChart").getContext("2d");
+        const analyticsCtx = document
+          .getElementById("analyticsChart")
+          .getContext("2d");
         const analyticsChart = new Chart(analyticsCtx, {
           type: "line",
           data: {
-            labels: ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6"],
+            labels: [
+              "Week 1",
+              "Week 2",
+              "Week 3",
+              "Week 4",
+              "Week 5",
+              "Week 6",
+            ],
             datasets: [
               {
                 label: "Applications",
@@ -2400,7 +2393,9 @@
         });
 
         // Status distribution chart
-        const statusCtx = document.getElementById("statusChart").getContext("2d");
+        const statusCtx = document
+          .getElementById("statusChart")
+          .getContext("2d");
         const statusChart = new Chart(statusCtx, {
           type: "doughnut",
           data: {
@@ -2408,12 +2403,7 @@
             datasets: [
               {
                 data: [24, 5, 2, 7],
-                backgroundColor: [
-                  "#3b82f6",
-                  "#10b981",
-                  "#f59e0b",
-                  "#ef4444",
-                ],
+                backgroundColor: ["#3b82f6", "#10b981", "#f59e0b", "#ef4444"],
                 borderWidth: 0,
               },
             ],
@@ -2461,7 +2451,8 @@
       });
 
       // Add gradient to user avatar
-      document.querySelector(".user-avatar").style.background = "var(--bg-gradient)";
+      document.querySelector(".user-avatar").style.background =
+        "var(--bg-gradient)";
     </script>
   </body>
 </html>
