@@ -13,7 +13,6 @@
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="style.css" />
     <style>
       :root {
         --bg-primary: #f8fafc;
@@ -542,6 +541,174 @@
         color: #94a3b8;
       }
 
+      /* Page Content */
+      .page-content {
+        display: none;
+      }
+
+      .page-content.active {
+        display: block;
+      }
+
+      /* Job Application Table */
+      .table-responsive {
+        border-radius: 1rem;
+        overflow: hidden;
+      }
+
+      .table {
+        margin-bottom: 0;
+      }
+
+      .table th {
+        background-color: var(--accent-primary);
+        color: white;
+        border: none;
+        padding: 1rem;
+        font-weight: 600;
+      }
+
+      .table td {
+        padding: 1rem;
+        vertical-align: middle;
+        border-color: var(--border-color);
+      }
+
+      .table tbody tr {
+        transition: all 0.3s ease;
+      }
+
+      .table tbody tr:hover {
+        background-color: rgba(59, 130, 246, 0.05);
+        transform: translateX(5px);
+      }
+
+      /* Status Badges */
+      .status-badge {
+        padding: 0.4rem 0.8rem;
+        border-radius: 50px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .status-applied {
+        background-color: rgba(59, 130, 246, 0.1);
+        color: var(--accent-primary);
+      }
+
+      .status-interview {
+        background-color: rgba(16, 185, 129, 0.1);
+        color: var(--accent-success);
+      }
+
+      .status-offer {
+        background-color: rgba(245, 158, 11, 0.1);
+        color: var(--accent-warning);
+      }
+
+      .status-rejected {
+        background-color: rgba(239, 68, 68, 0.1);
+        color: var(--accent-danger);
+      }
+
+      /* Settings Form */
+      .settings-form .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .settings-form label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+      }
+
+      .settings-form .form-control {
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        color: var(--text-primary);
+        border-radius: 0.75rem;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .settings-form .form-control:focus {
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        border-color: var(--accent-primary);
+      }
+
+      /* Resume Cards */
+      .resume-card {
+        border-radius: 1rem;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .resume-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .resume-card .card-body {
+        position: relative;
+      }
+
+      .resume-actions {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      /* Interview Schedule */
+      .interview-item {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        border-radius: 1rem;
+        margin-bottom: 1rem;
+        background-color: var(--bg-secondary);
+        box-shadow: var(--card-shadow);
+        transition: all 0.3s ease;
+      }
+
+      .interview-item:hover {
+        transform: translateX(5px);
+      }
+
+      .interview-time {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-gradient);
+        color: white;
+        padding: 1rem;
+        border-radius: 0.75rem;
+        min-width: 100px;
+        text-align: center;
+      }
+
+      .interview-time .day {
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      .interview-time .month {
+        font-size: 0.875rem;
+        opacity: 0.9;
+      }
+
+      .interview-details {
+        flex: 1;
+        padding: 0 1.5rem;
+      }
+
+      .interview-actions {
+        display: flex;
+        gap: 0.5rem;
+      }
+
       /* DESKTOP FIXES */
       @media (min-width: 992px) {
         .sidebar {
@@ -652,6 +819,19 @@
           left: 0 !important;
           right: 0 !important;
         }
+
+        .interview-item {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .interview-details {
+          padding: 1rem 0;
+        }
+
+        .interview-actions {
+          justify-content: center;
+        }
       }
 
       /* Small mobile devices */
@@ -736,33 +916,33 @@
         <h3><i class="bi bi-briefcase"></i> JobDash Pro</h3>
       </div>
       <div class="sidebar-nav">
-        <a href="#" class="nav-item active">
+        <a href="#" class="nav-item active" data-page="dashboard">
           <i class="bi bi-house"></i>
           <span>Dashboard</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="#" class="nav-item" data-page="applications">
           <i class="bi bi-envelope"></i>
-          <span>Messages</span>
-          <span class="badge bg-primary ms-auto">3</span>
+          <span>Applications</span>
+          <span class="badge bg-primary ms-auto">24</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="#" class="nav-item" data-page="analytics">
           <i class="bi bi-bar-chart"></i>
           <span>Analytics</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="#" class="nav-item" data-page="interviews">
           <i class="bi bi-calendar-check"></i>
           <span>Interviews</span>
           <span class="badge bg-success ms-auto">2</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="#" class="nav-item" data-page="resumes">
           <i class="bi bi-file-earmark-person"></i>
           <span>Resumes</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="#" class="nav-item" data-page="settings">
           <i class="bi bi-gear"></i>
           <span>Settings</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="#" class="nav-item" id="logoutBtn">
           <i class="bi bi-box-arrow-right"></i>
           <span>Logout</span>
         </a>
@@ -879,163 +1059,267 @@
         </div>
       </nav>
 
-      <!-- Stats Cards -->
-      <div class="row mb-4">
-        <div class="col-xl-3 col-md-6 col-sm-6 mb-3">
-          <div class="stat-card fade-in-up">
-            <div class="stat-icon stat-applied">
-              <i class="bi bi-send"></i>
+      <!-- Dashboard Page -->
+      <div class="page-content active" id="dashboard">
+        <!-- Stats Cards -->
+        <div class="row mb-4">
+          <div class="col-xl-3 col-md-6 col-sm-6 mb-3">
+            <div class="stat-card fade-in-up">
+              <div class="stat-icon stat-applied">
+                <i class="bi bi-send"></i>
+              </div>
+              <h4 class="fw-bold">24</h4>
+              <p class="text-muted mb-0">Applications Sent</p>
             </div>
-            <h4 class="fw-bold">24</h4>
-            <p class="text-muted mb-0">Applications Sent</p>
+          </div>
+          <div class="col-xl-3 col-md-6 col-sm-6 mb-3">
+            <div class="stat-card fade-in-up" style="animation-delay: 0.1s">
+              <div class="stat-icon stat-interview">
+                <i class="bi bi-calendar-event"></i>
+              </div>
+              <h4 class="fw-bold">5</h4>
+              <p class="text-muted mb-0">Interviews</p>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6 col-sm-6 mb-3">
+            <div class="stat-card fade-in-up" style="animation-delay: 0.2s">
+              <div class="stat-icon stat-offers">
+                <i class="bi bi-award"></i>
+              </div>
+              <h4 class="fw-bold">2</h4>
+              <p class="text-muted mb-0">Job Offers</p>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6 col-sm-6 mb-3">
+            <div class="stat-card fade-in-up" style="animation-delay: 0.3s">
+              <div class="stat-icon stat-rejected">
+                <i class="bi bi-x-circle"></i>
+              </div>
+              <h4 class="fw-bold">7</h4>
+              <p class="text-muted mb-0">Rejections</p>
+            </div>
           </div>
         </div>
-        <div class="col-xl-3 col-md-6 col-sm-6 mb-3">
-          <div class="stat-card fade-in-up" style="animation-delay: 0.1s">
-            <div class="stat-icon stat-interview">
-              <i class="bi bi-calendar-event"></i>
-            </div>
-            <h4 class="fw-bold">5</h4>
-            <p class="text-muted mb-0">Interviews</p>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-6 col-sm-6 mb-3">
-          <div class="stat-card fade-in-up" style="animation-delay: 0.2s">
-            <div class="stat-icon stat-offers">
-              <i class="bi bi-award"></i>
-            </div>
-            <h4 class="fw-bold">2</h4>
-            <p class="text-muted mb-0">Job Offers</p>
-          </div>
-        </div>
-        <div class="col-xl-3 col-md-6 col-sm-6 mb-3">
-          <div class="stat-card fade-in-up" style="animation-delay: 0.3s">
-            <div class="stat-icon stat-rejected">
-              <i class="bi bi-x-circle"></i>
-            </div>
-            <h4 class="fw-bold">7</h4>
-            <p class="text-muted mb-0">Rejections</p>
-          </div>
-        </div>
-      </div>
 
-      <!-- Job Response Card section -->
-      <div class="card mb-4">
-        <div
-          class="card-header d-flex justify-content-between align-items-center"
-        >
-          <h5 class="mb-0 fw-bold">
-            <i class="bi bi-envelope-paper me-2"></i>Company Message
-          </h5>
-          <span class="badge bg-primary">New</span>
-        </div>
-        <div class="card-body">
-          <div class="mb-4">
-            <p class="text-muted mb-3">
-              We appreciate your interest in the Senior Developer position.
-              Please note that the role requires on-site presence in Okara. If
-              you're available to work on-site, let us know so we can proceed
-              with your interview. If you're only looking for a remote
-              opportunity, we may not be the right fit currently.
-            </p>
-            <div
-              class="d-flex flex-column flex-md-row align-items-md-center text-muted"
-            >
-              <div class="d-flex align-items-center mb-2 mb-md-0">
-                <i class="bi bi-building me-2"></i>
-                <span>TechCorp Inc.</span>
-              </div>
-              <div class="d-flex align-items-center ms-md-3">
-                <i class="bi bi-clock me-2"></i>
-                <span>Received: Today, 9:15 AM</span>
-              </div>
-            </div>
-          </div>
-          <div class="d-flex flex-column flex-sm-row flex-wrap gap-3">
-            <button class="btn-gradient" onclick="respondRemote()">
-              <i class="bi bi-laptop me-2"></i>Respond as Remote
-            </button>
-            <button class="btn-outline-custom" onclick="respondIgnore()">
-              <i class="bi bi-x-circle me-2"></i>Ignore
-            </button>
-          </div>
+        <!-- Job Response Card section -->
+        <div class="card mb-4">
           <div
-            id="responseMessage"
-            class="mt-4 p-3 rounded bg-light border fade-in"
-            style="display: none"
-          ></div>
-        </div>
-      </div>
-
-      <div class="row">
-        <!-- Chart Section -->
-        <div class="col-xl-8 col-lg-7 mb-4">
-          <div class="card h-100">
-            <div class="card-header">
-              <h5 class="mb-0 fw-bold">
-                <i class="bi bi-bar-chart me-2"></i>Application Statistics
-              </h5>
-            </div>
-            <div class="card-body">
+            class="card-header d-flex justify-content-between align-items-center"
+          >
+            <h5 class="mb-0 fw-bold">
+              <i class="bi bi-envelope-paper me-2"></i>Company Message
+            </h5>
+            <span class="badge bg-primary">New</span>
+          </div>
+          <div class="card-body">
+            <div class="mb-4">
+              <p class="text-muted mb-3">
+                We appreciate your interest in the Senior Developer position.
+                Please note that the role requires on-site presence in Okara. If
+                you're available to work on-site, let us know so we can proceed
+                with your interview. If you're only looking for a remote
+                opportunity, we may not be the right fit currently.
+              </p>
               <div
-                class="chart-container"
-                style="position: relative; height: 300px; width: 100%"
+                class="d-flex flex-column flex-md-row align-items-md-center text-muted"
               >
-                <canvas id="jobChart"></canvas>
+                <div class="d-flex align-items-center mb-2 mb-md-0">
+                  <i class="bi bi-building me-2"></i>
+                  <span>TechCorp Inc.</span>
+                </div>
+                <div class="d-flex align-items-center ms-md-3">
+                  <i class="bi bi-clock me-2"></i>
+                  <span>Received: Today, 9:15 AM</span>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-column flex-sm-row flex-wrap gap-3">
+              <button class="btn-gradient" onclick="respondRemote()">
+                <i class="bi bi-laptop me-2"></i>Respond as Remote
+              </button>
+              <button class="btn-outline-custom" onclick="respondIgnore()">
+                <i class="bi bi-x-circle me-2"></i>Ignore
+              </button>
+            </div>
+            <div
+              id="responseMessage"
+              class="mt-4 p-3 rounded bg-light border fade-in"
+              style="display: none"
+            ></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Chart Section -->
+          <div class="col-xl-8 col-lg-7 mb-4">
+            <div class="card h-100">
+              <div class="card-header">
+                <h5 class="mb-0 fw-bold">
+                  <i class="bi bi-bar-chart me-2"></i>Application Statistics
+                </h5>
+              </div>
+              <div class="card-body">
+                <div
+                  class="chart-container"
+                  style="position: relative; height: 300px; width: 100%"
+                >
+                  <canvas id="jobChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tasks List -->
+          <div class="col-xl-4 col-lg-5 mb-4">
+            <div class="card h-100">
+              <div
+                class="card-header d-flex justify-content-between align-items-center"
+              >
+                <h5 class="mb-0 fw-bold">
+                  <i class="bi bi-list-check me-2"></i>To-Do List
+                </h5>
+                <span class="badge bg-primary">4 tasks</span>
+              </div>
+              <div class="card-body">
+                <div class="task-item">
+                  <i class="bi bi-circle"></i>
+                  <div>
+                    <div class="fw-medium">Update portfolio website</div>
+                    <small class="text-muted">Due: Tomorrow</small>
+                  </div>
+                </div>
+                <div class="task-item">
+                  <i class="bi bi-circle"></i>
+                  <div>
+                    <div class="fw-medium">Apply for 2 remote jobs</div>
+                    <small class="text-muted">Due: Today</small>
+                  </div>
+                </div>
+                <div class="task-item">
+                  <i class="bi bi-check-circle text-success"></i>
+                  <div>
+                    <div class="fw-medium text-decoration-line-through">
+                      Push new GitHub commits
+                    </div>
+                    <small class="text-muted">Completed</small>
+                  </div>
+                </div>
+                <div class="task-item">
+                  <i class="bi bi-circle"></i>
+                  <div>
+                    <div class="fw-medium">Reply to HR emails</div>
+                    <small class="text-muted">Due: Today</small>
+                  </div>
+                </div>
+                <div class="task-item">
+                  <i class="bi bi-check-circle text-success"></i>
+                  <div>
+                    <div class="fw-medium text-decoration-line-through">
+                      Prepare for interview
+                    </div>
+                    <small class="text-muted">Completed</small>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Tasks List -->
-        <div class="col-xl-4 col-lg-5 mb-4">
-          <div class="card h-100">
-            <div
-              class="card-header d-flex justify-content-between align-items-center"
-            >
-              <h5 class="mb-0 fw-bold">
-                <i class="bi bi-list-check me-2"></i>To-Do List
-              </h5>
-              <span class="badge bg-primary">4 tasks</span>
+        <div class="row">
+          <!-- Notification Panel -->
+          <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+              <div class="card-header">
+                <h5 class="mb-0 fw-bold">
+                  <i class="bi bi-bell me-2"></i>Notifications
+                </h5>
+              </div>
+              <div class="card-body">
+                <div class="notification-item">
+                  <i class="bi bi-info-circle text-primary"></i>
+                  <div>
+                    <a href="#">You have 1 interview invitation check now.</a>
+                    <small class="text-muted d-block"
+                      >From: TechSolutions Ltd.</small
+                    >
+                  </div>
+                </div>
+                <div class="notification-item">
+                  <i class="bi bi-check2-circle text-success"></i>
+                  <div>
+                    <a href="#">Your resume was viewed by 3 companies.</a>
+                    <small class="text-muted d-block"
+                      >In the last 24 hours</small
+                    >
+                  </div>
+                </div>
+                <div class="notification-item">
+                  <i class="bi bi-exclamation-triangle text-warning"></i>
+                  <div>
+                    <a href="#">Profile incomplete add skills section.</a>
+                    <small class="text-muted d-block"
+                      >Complete to increase visibility</small
+                    >
+                  </div>
+                </div>
+                <div class="notification-item">
+                  <i class="bi bi-star text-info"></i>
+                  <div>
+                    <a href="#">New job matches your profile.</a>
+                    <small class="text-muted d-block"
+                      >Remote Frontend Developer</small
+                    >
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="card-body">
-              <div class="task-item">
-                <i class="bi bi-circle"></i>
-                <div>
-                  <div class="fw-medium">Update portfolio website</div>
-                  <small class="text-muted">Due: Tomorrow</small>
-                </div>
+          </div>
+
+          <!-- Recent Activity -->
+          <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+              <div class="card-header">
+                <h5 class="mb-0 fw-bold">
+                  <i class="bi bi-clock-history me-2"></i>Recent Activity
+                </h5>
               </div>
-              <div class="task-item">
-                <i class="bi bi-circle"></i>
-                <div>
-                  <div class="fw-medium">Apply for 2 remote jobs</div>
-                  <small class="text-muted">Due: Today</small>
-                </div>
-              </div>
-              <div class="task-item">
-                <i class="bi bi-check-circle text-success"></i>
-                <div>
-                  <div class="fw-medium text-decoration-line-through">
-                    Push new GitHub commits
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
+                  <div
+                    class="bg-primary bg-opacity-10 rounded-circle p-2 me-3"
+                  >
+                    <i class="bi bi-briefcase text-primary"></i>
                   </div>
-                  <small class="text-muted">Completed</small>
-                </div>
-              </div>
-              <div class="task-item">
-                <i class="bi bi-circle"></i>
-                <div>
-                  <div class="fw-medium">Reply to HR emails</div>
-                  <small class="text-muted">Due: Today</small>
-                </div>
-              </div>
-              <div class="task-item">
-                <i class="bi bi-check-circle text-success"></i>
-                <div>
-                  <div class="fw-medium text-decoration-line-through">
-                    Prepare for interview
+                  <div>
+                    <p class="mb-0 fw-medium">
+                      Applied for Senior Developer position
+                    </p>
+                    <small class="text-muted">2 hours ago</small>
                   </div>
-                  <small class="text-muted">Completed</small>
+                </div>
+                <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
+                  <div
+                    class="bg-success bg-opacity-10 rounded-circle p-2 me-3"
+                  >
+                    <i class="bi bi-envelope-open text-success"></i>
+                  </div>
+                  <div>
+                    <p class="mb-0 fw-medium">
+                      Received response from TechCorp Inc.
+                    </p>
+                    <small class="text-muted">Yesterday</small>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <div
+                    class="bg-warning bg-opacity-10 rounded-circle p-2 me-3"
+                  >
+                    <i class="bi bi-calendar-check text-warning"></i>
+                  </div>
+                  <div>
+                    <p class="mb-0 fw-medium">Interview scheduled for Friday</p>
+                    <small class="text-muted">2 days ago</small>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1043,92 +1327,835 @@
         </div>
       </div>
 
-      <div class="row">
-        <!-- Notification Panel -->
-        <div class="col-lg-6 mb-4">
-          <div class="card h-100">
-            <div class="card-header">
-              <h5 class="mb-0 fw-bold">
-                <i class="bi bi-bell me-2"></i>Notifications
-              </h5>
+      <!-- Applications Page -->
+      <div class="page-content" id="applications">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="fw-bold">Job Applications</h3>
+          <button class="btn-gradient">
+            <i class="bi bi-plus-circle me-2"></i>Add Application
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0 fw-bold">
+              <i class="bi bi-list-ul me-2"></i>Application History
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Company</th>
+                    <th>Position</th>
+                    <th>Date Applied</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div
+                          class="bg-primary bg-opacity-10 rounded-circle p-2 me-3"
+                        >
+                          <i class="bi bi-building text-primary"></i>
+                        </div>
+                        <div>
+                          <div class="fw-medium">TechCorp Inc.</div>
+                          <small class="text-muted">San Francisco, CA</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Senior Frontend Developer</td>
+                    <td>Oct 15, 2023</td>
+                    <td>
+                      <span class="status-badge status-interview"
+                        >Interview</span
+                      >
+                    </td>
+                    <td>
+                      <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-outline-primary">
+                          <i class="bi bi-eye"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-warning">
+                          <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger">
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div
+                          class="bg-success bg-opacity-10 rounded-circle p-2 me-3"
+                        >
+                          <i class="bi bi-building text-success"></i>
+                        </div>
+                        <div>
+                          <div class="fw-medium">Digital Solutions</div>
+                          <small class="text-muted">New York, NY</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Full Stack Developer</td>
+                    <td>Oct 10, 2023</td>
+                    <td>
+                      <span class="status-badge status-offer">Offer</span>
+                    </td>
+                    <td>
+                      <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-outline-primary">
+                          <i class="bi bi-eye"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-warning">
+                          <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger">
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div
+                          class="bg-danger bg-opacity-10 rounded-circle p-2 me-3"
+                        >
+                          <i class="bi bi-building text-danger"></i>
+                        </div>
+                        <div>
+                          <div class="fw-medium">WebTech Ltd.</div>
+                          <small class="text-muted">Chicago, IL</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td>React Developer</td>
+                    <td>Oct 5, 2023</td>
+                    <td>
+                      <span class="status-badge status-rejected"
+                        >Rejected</span
+                      >
+                    </td>
+                    <td>
+                      <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-outline-primary">
+                          <i class="bi bi-eye"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-warning">
+                          <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger">
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div
+                          class="bg-primary bg-opacity-10 rounded-circle p-2 me-3"
+                        >
+                          <i class="bi bi-building text-primary"></i>
+                        </div>
+                        <div>
+                          <div class="fw-medium">InnovateSoft</div>
+                          <small class="text-muted">Austin, TX</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td>UI/UX Developer</td>
+                    <td>Oct 1, 2023</td>
+                    <td>
+                      <span class="status-badge status-applied">Applied</span>
+                    </td>
+                    <td>
+                      <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-outline-primary">
+                          <i class="bi bi-eye"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-warning">
+                          <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger">
+                          <i class="bi bi-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div class="card-body">
-              <div class="notification-item">
-                <i class="bi bi-info-circle text-primary"></i>
-                <div>
-                  <a href="#">You have 1 interview invitation check now.</a>
-                  <small class="text-muted d-block"
-                    >From: TechSolutions Ltd.</small
-                  >
+          </div>
+        </div>
+      </div>
+
+      <!-- Analytics Page -->
+      <div class="page-content" id="analytics">
+        <h3 class="fw-bold mb-4">Application Analytics</h3>
+
+        <div class="row mb-4">
+          <div class="col-md-8 mb-4">
+            <div class="card h-100">
+              <div class="card-header">
+                <h5 class="mb-0 fw-bold">
+                  <i class="bi bi-bar-chart me-2"></i>Application Trends
+                </h5>
+              </div>
+              <div class="card-body">
+                <div
+                  class="chart-container"
+                  style="position: relative; height: 300px; width: 100%"
+                >
+                  <canvas id="analyticsChart"></canvas>
                 </div>
               </div>
-              <div class="notification-item">
-                <i class="bi bi-check2-circle text-success"></i>
-                <div>
-                  <a href="#">Your resume was viewed by 3 companies.</a>
-                  <small class="text-muted d-block">In the last 24 hours</small>
-                </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="card h-100">
+              <div class="card-header">
+                <h5 class="mb-0 fw-bold">
+                  <i class="bi bi-pie-chart me-2"></i>Status Distribution
+                </h5>
               </div>
-              <div class="notification-item">
-                <i class="bi bi-exclamation-triangle text-warning"></i>
-                <div>
-                  <a href="#">Profile incomplete add skills section.</a>
-                  <small class="text-muted d-block"
-                    >Complete to increase visibility</small
-                  >
-                </div>
-              </div>
-              <div class="notification-item">
-                <i class="bi bi-star text-info"></i>
-                <div>
-                  <a href="#">New job matches your profile.</a>
-                  <small class="text-muted d-block"
-                    >Remote Frontend Developer</small
-                  >
+              <div class="card-body">
+                <div
+                  class="chart-container"
+                  style="position: relative; height: 300px; width: 100%"
+                >
+                  <canvas id="statusChart"></canvas>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Recent Activity -->
-        <div class="col-lg-6 mb-4">
-          <div class="card h-100">
-            <div class="card-header">
-              <h5 class="mb-0 fw-bold">
-                <i class="bi bi-clock-history me-2"></i>Recent Activity
-              </h5>
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0 fw-bold">
+                  <i class="bi bi-clock-history me-2"></i>Response Time
+                  Analytics
+                </h5>
+              </div>
+              <div class="card-body">
+                <div class="d-flex justify-content-between mb-3">
+                  <div>
+                    <h6 class="fw-bold">Average Response Time</h6>
+                    <h4 class="text-primary">3.2 days</h4>
+                  </div>
+                  <div>
+                    <h6 class="fw-bold">Fastest Response</h6>
+                    <h4 class="text-success">1 day</h4>
+                  </div>
+                  <div>
+                    <h6 class="fw-bold">Slowest Response</h6>
+                    <h4 class="text-warning">7 days</h4>
+                  </div>
+                </div>
+                <div class="progress mb-3" style="height: 10px">
+                  <div
+                    class="progress-bar bg-success"
+                    role="progressbar"
+                    style="width: 25%"
+                  ></div>
+                  <div
+                    class="progress-bar bg-primary"
+                    role="progressbar"
+                    style="width: 50%"
+                  ></div>
+                  <div
+                    class="progress-bar bg-warning"
+                    role="progressbar"
+                    style="width: 15%"
+                  ></div>
+                  <div
+                    class="progress-bar bg-danger"
+                    role="progressbar"
+                    style="width: 10%"
+                  ></div>
+                </div>
+                <div class="d-flex justify-content-between text-muted small">
+                  <span>1-2 days</span>
+                  <span>3-4 days</span>
+                  <span>5-6 days</span>
+                  <span>7+ days</span>
+                </div>
+              </div>
             </div>
-            <div class="card-body">
-              <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
-                <div class="bg-primary bg-opacity-10 rounded-circle p-2 me-3">
-                  <i class="bi bi-briefcase text-primary"></i>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0 fw-bold">
+                  <i class="bi bi-geo-alt me-2"></i>Location Analytics
+                </h5>
+              </div>
+              <div class="card-body">
+                <div class="d-flex align-items-center mb-3">
+                  <div class="flex-grow-1">
+                    <div class="fw-medium">Remote Positions</div>
+                    <div class="progress mt-1" style="height: 8px">
+                      <div
+                        class="progress-bar bg-primary"
+                        role="progressbar"
+                        style="width: 65%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="ms-3 fw-bold">65%</div>
                 </div>
-                <div>
-                  <p class="mb-0 fw-medium">
-                    Applied for Senior Developer position
-                  </p>
-                  <small class="text-muted">2 hours ago</small>
+                <div class="d-flex align-items-center mb-3">
+                  <div class="flex-grow-1">
+                    <div class="fw-medium">On-site Positions</div>
+                    <div class="progress mt-1" style="height: 8px">
+                      <div
+                        class="progress-bar bg-success"
+                        role="progressbar"
+                        style="width: 25%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="ms-3 fw-bold">25%</div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class="flex-grow-1">
+                    <div class="fw-medium">Hybrid Positions</div>
+                    <div class="progress mt-1" style="height: 8px">
+                      <div
+                        class="progress-bar bg-warning"
+                        role="progressbar"
+                        style="width: 10%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="ms-3 fw-bold">10%</div>
                 </div>
               </div>
-              <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
-                <div class="bg-success bg-opacity-10 rounded-circle p-2 me-3">
-                  <i class="bi bi-envelope-open text-success"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interviews Page -->
+      <div class="page-content" id="interviews">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="fw-bold">Interview Schedule</h3>
+          <button class="btn-gradient">
+            <i class="bi bi-plus-circle me-2"></i>Schedule Interview
+          </button>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-8 mb-4">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0 fw-bold">
+                  <i class="bi bi-calendar-week me-2"></i>Upcoming Interviews
+                </h5>
+              </div>
+              <div class="card-body">
+                <div class="interview-item">
+                  <div class="interview-time">
+                    <div class="day">18</div>
+                    <div class="month">OCT</div>
+                    <div class="time">10:00 AM</div>
+                  </div>
+                  <div class="interview-details">
+                    <h6 class="fw-bold">Senior Frontend Developer</h6>
+                    <p class="mb-1">TechCorp Inc.</p>
+                    <div class="d-flex flex-wrap gap-2 mt-2">
+                      <span class="badge bg-light text-dark"
+                        ><i class="bi bi-camera-video me-1"></i>Video Call</span
+                      >
+                      <span class="badge bg-light text-dark"
+                        ><i class="bi bi-clock me-1"></i>45 minutes</span
+                      >
+                    </div>
+                  </div>
+                  <div class="interview-actions">
+                    <button class="btn btn-outline-primary btn-sm">
+                      <i class="bi bi-calendar-check"></i> Join
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm">
+                      <i class="bi bi-pencil"></i> Reschedule
+                    </button>
+                  </div>
                 </div>
-                <div>
-                  <p class="mb-0 fw-medium">
-                    Received response from TechCorp Inc.
-                  </p>
-                  <small class="text-muted">Yesterday</small>
+
+                <div class="interview-item">
+                  <div class="interview-time">
+                    <div class="day">22</div>
+                    <div class="month">OCT</div>
+                    <div class="time">02:30 PM</div>
+                  </div>
+                  <div class="interview-details">
+                    <h6 class="fw-bold">Full Stack Developer</h6>
+                    <p class="mb-1">Digital Solutions</p>
+                    <div class="d-flex flex-wrap gap-2 mt-2">
+                      <span class="badge bg-light text-dark"
+                        ><i class="bi bi-building me-1"></i>On-site</span
+                      >
+                      <span class="badge bg-light text-dark"
+                        ><i class="bi bi-clock me-1"></i>1 hour</span
+                      >
+                    </div>
+                  </div>
+                  <div class="interview-actions">
+                    <button class="btn btn-outline-primary btn-sm">
+                      <i class="bi bi-info-circle"></i> Details
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm">
+                      <i class="bi bi-pencil"></i> Reschedule
+                    </button>
+                  </div>
+                </div>
+
+                <div class="interview-item">
+                  <div class="interview-time">
+                    <div class="day">25</div>
+                    <div class="month">OCT</div>
+                    <div class="time">11:00 AM</div>
+                  </div>
+                  <div class="interview-details">
+                    <h6 class="fw-bold">UI/UX Developer</h6>
+                    <p class="mb-1">InnovateSoft</p>
+                    <div class="d-flex flex-wrap gap-2 mt-2">
+                      <span class="badge bg-light text-dark"
+                        ><i class="bi bi-telephone me-1"></i>Phone Call</span
+                      >
+                      <span class="badge bg-light text-dark"
+                        ><i class="bi bi-clock me-1"></i>30 minutes</span
+                      >
+                    </div>
+                  </div>
+                  <div class="interview-actions">
+                    <button class="btn btn-outline-primary btn-sm">
+                      <i class="bi bi-telephone"></i> Call
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm">
+                      <i class="bi bi-pencil"></i> Reschedule
+                    </button>
+                  </div>
                 </div>
               </div>
-              <div class="d-flex align-items-center">
-                <div class="bg-warning bg-opacity-10 rounded-circle p-2 me-3">
-                  <i class="bi bi-calendar-check text-warning"></i>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mb-4">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0 fw-bold">
+                  <i class="bi bi-check-circle me-2"></i>Interview Preparation
+                </h5>
+              </div>
+              <div class="card-body">
+                <div class="mb-4">
+                  <h6 class="fw-bold">Next Interview</h6>
+                  <div class="d-flex align-items-center mt-2">
+                    <div
+                      class="bg-primary bg-opacity-10 rounded-circle p-2 me-3"
+                    >
+                      <i class="bi bi-calendar-event text-primary"></i>
+                    </div>
+                    <div>
+                      <div class="fw-medium">TechCorp Inc.</div>
+                      <small class="text-muted">Oct 18, 10:00 AM</small>
+                    </div>
+                  </div>
                 </div>
+
+                <div class="mb-4">
+                  <h6 class="fw-bold">Preparation Checklist</h6>
+                  <div class="form-check mt-2">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="check1"
+                    />
+                    <label class="form-check-label" for="check1">
+                      Research company
+                    </label>
+                  </div>
+                  <div class="form-check mt-2">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="check2"
+                    />
+                    <label class="form-check-label" for="check2">
+                      Review job description
+                    </label>
+                  </div>
+                  <div class="form-check mt-2">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="check3"
+                    />
+                    <label class="form-check-label" for="check3">
+                      Prepare questions
+                    </label>
+                  </div>
+                  <div class="form-check mt-2">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="check4"
+                    />
+                    <label class="form-check-label" for="check4">
+                      Test equipment
+                    </label>
+                  </div>
+                </div>
+
                 <div>
-                  <p class="mb-0 fw-medium">Interview scheduled for Friday</p>
-                  <small class="text-muted">2 days ago</small>
+                  <h6 class="fw-bold">Interview Resources</h6>
+                  <div class="d-grid gap-2 mt-2">
+                    <button class="btn btn-outline-primary btn-sm">
+                      <i class="bi bi-file-text me-1"></i>Common Questions
+                    </button>
+                    <button class="btn btn-outline-primary btn-sm">
+                      <i class="bi bi-play-circle me-1"></i>Video Guide
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resumes Page -->
+      <div class="page-content" id="resumes">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="fw-bold">My Resumes</h3>
+          <button class="btn-gradient">
+            <i class="bi bi-plus-circle me-2"></i>Upload Resume
+          </button>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card resume-card h-100">
+              <div class="card-body">
+                <div class="resume-actions">
+                  <button class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-download"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-warning">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                  <div
+                    class="bg-primary bg-opacity-10 rounded-circle p-3 me-3"
+                  >
+                    <i class="bi bi-file-earmark-text text-primary fs-4"></i>
+                  </div>
+                  <div>
+                    <h5 class="fw-bold mb-0">Software Developer</h5>
+                    <p class="text-muted mb-0">Updated: Oct 15, 2023</p>
+                  </div>
+                </div>
+                <p class="text-muted mb-3">
+                  Focused on frontend development with React, TypeScript, and
+                  modern web technologies.
+                </p>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <span class="badge bg-primary">React</span>
+                  <span class="badge bg-primary">TypeScript</span>
+                  <span class="badge bg-primary">JavaScript</span>
+                </div>
+                <div class="d-grid">
+                  <button class="btn btn-outline-primary">
+                    <i class="bi bi-eye me-2"></i>View Resume
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card resume-card h-100">
+              <div class="card-body">
+                <div class="resume-actions">
+                  <button class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-download"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-warning">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                  <div
+                    class="bg-success bg-opacity-10 rounded-circle p-3 me-3"
+                  >
+                    <i class="bi bi-file-earmark-text text-success fs-4"></i>
+                  </div>
+                  <div>
+                    <h5 class="fw-bold mb-0">Full Stack Developer</h5>
+                    <p class="text-muted mb-0">Updated: Oct 10, 2023</p>
+                  </div>
+                </div>
+                <p class="text-muted mb-3">
+                  Comprehensive full-stack experience with Node.js, React,
+                  MongoDB, and cloud platforms.
+                </p>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <span class="badge bg-success">Node.js</span>
+                  <span class="badge bg-success">React</span>
+                  <span class="badge bg-success">MongoDB</span>
+                </div>
+                <div class="d-grid">
+                  <button class="btn btn-outline-primary">
+                    <i class="bi bi-eye me-2"></i>View Resume
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card resume-card h-100">
+              <div class="card-body">
+                <div class="resume-actions">
+                  <button class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-download"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-warning">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                  <div
+                    class="bg-warning bg-opacity-10 rounded-circle p-3 me-3"
+                  >
+                    <i class="bi bi-file-earmark-text text-warning fs-4"></i>
+                  </div>
+                  <div>
+                    <h5 class="fw-bold mb-0">UI/UX Developer</h5>
+                    <p class="text-muted mb-0">Updated: Oct 5, 2023</p>
+                  </div>
+                </div>
+                <p class="text-muted mb-3">
+                  Specialized in creating beautiful, responsive user interfaces
+                  with modern design principles.
+                </p>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  <span class="badge bg-warning">Figma</span>
+                  <span class="badge bg-warning">CSS</span>
+                  <span class="badge bg-warning">UI Design</span>
+                </div>
+                <div class="d-grid">
+                  <button class="btn btn-outline-primary">
+                    <i class="bi bi-eye me-2"></i>View Resume
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h5 class="mb-0 fw-bold">
+              <i class="bi bi-bar-chart me-2"></i>Resume Performance
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-3 col-sm-6 mb-3">
+                <div class="text-center">
+                  <h3 class="fw-bold text-primary">142</h3>
+                  <p class="text-muted mb-0">Total Views</p>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6 mb-3">
+                <div class="text-center">
+                  <h3 class="fw-bold text-success">24</h3>
+                  <p class="text-muted mb-0">Downloads</p>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6 mb-3">
+                <div class="text-center">
+                  <h3 class="fw-bold text-warning">18%</h3>
+                  <p class="text-muted mb-0">Response Rate</p>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6 mb-3">
+                <div class="text-center">
+                  <h3 class="fw-bold text-info">7.2</h3>
+                  <p class="text-muted mb-0">Avg. Rating</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings Page -->
+      <div class="page-content" id="settings">
+        <h3 class="fw-bold mb-4">Account Settings</h3>
+
+        <div class="row">
+          <div class="col-lg-8 mb-4">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0 fw-bold">
+                  <i class="bi bi-person me-2"></i>Profile Information
+                </h5>
+              </div>
+              <div class="card-body">
+                <form class="settings-form">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="firstName"
+                          value="Muhammad"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="lastName"
+                          value="Munsif"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      value="munsif@example.com"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input
+                      type="tel"
+                      class="form-control"
+                      id="phone"
+                      value="+1 (555) 123-4567"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="location">Location</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="location"
+                      value="San Francisco, CA"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="bio">Professional Bio</label>
+                    <textarea
+                      class="form-control"
+                      id="bio"
+                      rows="4"
+                    >Experienced software developer with 5+ years in frontend development. Passionate about creating user-friendly applications with modern technologies.</textarea>
+                  </div>
+                  <button type="submit" class="btn-gradient">
+                    Save Changes
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mb-4">
+            <div class="card mb-4">
+              <div class="card-header">
+                <h5 class="mb-0 fw-bold">
+                  <i class="bi bi-bell me-2"></i>Notification Preferences
+                </h5>
+              </div>
+              <div class="card-body">
+                <div class="form-check form-switch mb-3">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="emailNotifications"
+                    checked
+                  />
+                  <label class="form-check-label" for="emailNotifications">
+                    Email Notifications
+                  </label>
+                </div>
+                <div class="form-check form-switch mb-3">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="applicationUpdates"
+                    checked
+                  />
+                  <label class="form-check-label" for="applicationUpdates">
+                    Application Updates
+                  </label>
+                </div>
+                <div class="form-check form-switch mb-3">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="interviewReminders"
+                    checked
+                  />
+                  <label class="form-check-label" for="interviewReminders">
+                    Interview Reminders
+                  </label>
+                </div>
+                <div class="form-check form-switch">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="newsletter"
+                  />
+                  <label class="form-check-label" for="newsletter">
+                    Job Alerts Newsletter
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0 fw-bold">
+                  <i class="bi bi-shield me-2"></i>Security
+                </h5>
+              </div>
+              <div class="card-body">
+                <div class="d-grid gap-2">
+                  <button class="btn btn-outline-primary">
+                    Change Password
+                  </button>
+                  <button class="btn btn-outline-warning">
+                    Two-Factor Authentication
+                  </button>
+                  <button class="btn btn-outline-danger">
+                    Deactivate Account
+                  </button>
                 </div>
               </div>
             </div>
@@ -1139,7 +2166,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-            // Theme toggle functionality
+      // Theme toggle functionality
       const themeToggle = document.getElementById("themeToggle");
       const themeIcon = document.getElementById("themeIcon");
       const body = document.body;
@@ -1214,7 +2241,50 @@
         }, 1000);
       }
 
-      // Chart.js bar chart
+      // Page navigation functionality
+      const navItems = document.querySelectorAll(".nav-item[data-page]");
+      const pageContents = document.querySelectorAll(".page-content");
+
+      navItems.forEach((item) => {
+        item.addEventListener("click", (e) => {
+          e.preventDefault();
+          
+          // Remove active class from all nav items
+          navItems.forEach((navItem) => {
+            navItem.classList.remove("active");
+          });
+          
+          // Add active class to clicked nav item
+          item.classList.add("active");
+          
+          // Hide all page contents
+          pageContents.forEach((page) => {
+            page.classList.remove("active");
+          });
+          
+          // Show the selected page content
+          const pageId = item.getAttribute("data-page");
+          document.getElementById(pageId).classList.add("active");
+          
+          // Close sidebar on mobile after navigation
+          if (window.innerWidth < 992) {
+            sidebar.classList.remove("active");
+            hamburgerMenu.classList.remove("active");
+            sidebarOverlay.classList.remove("active");
+          }
+        });
+      });
+
+      // Logout functionality
+      document.getElementById("logoutBtn").addEventListener("click", (e) => {
+        e.preventDefault();
+        if (confirm("Are you sure you want to logout?")) {
+          alert("You have been logged out successfully.");
+          // In a real app, you would redirect to login page
+        }
+      });
+
+      // Chart.js bar chart for dashboard
       document.addEventListener("DOMContentLoaded", function () {
         const ctx = document.getElementById("jobChart").getContext("2d");
         const jobChart = new Chart(ctx, {
@@ -1277,6 +2347,86 @@
               duration: 2000,
               easing: "easeOutQuart",
             },
+          },
+        });
+
+        // Analytics chart
+        const analyticsCtx = document.getElementById("analyticsChart").getContext("2d");
+        const analyticsChart = new Chart(analyticsCtx, {
+          type: "line",
+          data: {
+            labels: ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6"],
+            datasets: [
+              {
+                label: "Applications",
+                data: [12, 19, 15, 22, 18, 25],
+                borderColor: "#3b82f6",
+                backgroundColor: "rgba(59, 130, 246, 0.1)",
+                tension: 0.4,
+                fill: true,
+              },
+              {
+                label: "Interviews",
+                data: [3, 5, 4, 7, 6, 9],
+                borderColor: "#10b981",
+                backgroundColor: "rgba(16, 185, 129, 0.1)",
+                tension: 0.4,
+                fill: true,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid: {
+                  color: "rgba(0, 0, 0, 0.05)",
+                },
+              },
+              x: {
+                grid: {
+                  display: false,
+                },
+              },
+            },
+            plugins: {
+              legend: {
+                position: "top",
+              },
+            },
+          },
+        });
+
+        // Status distribution chart
+        const statusCtx = document.getElementById("statusChart").getContext("2d");
+        const statusChart = new Chart(statusCtx, {
+          type: "doughnut",
+          data: {
+            labels: ["Applied", "Interview", "Offer", "Rejected"],
+            datasets: [
+              {
+                data: [24, 5, 2, 7],
+                backgroundColor: [
+                  "#3b82f6",
+                  "#10b981",
+                  "#f59e0b",
+                  "#ef4444",
+                ],
+                borderWidth: 0,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: "bottom",
+              },
+            },
+            cutout: "70%",
           },
         });
       });
